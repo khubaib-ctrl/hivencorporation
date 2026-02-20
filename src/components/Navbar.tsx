@@ -15,6 +15,7 @@ const navLinks = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -30,33 +31,45 @@ export default function Navbar() {
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled
-            ? "bg-[var(--glass)] backdrop-blur-2xl border-b border-[var(--glass-border)] shadow-[0_4px_30px_rgba(0,0,0,0.3)]"
+            ? "bg-glass backdrop-blur-md border-b border-glass-border shadow-[0_4px_20px_rgba(0,0,0,0.3)]"
             : "bg-transparent"
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
-            <a href="#" className="flex items-center gap-2.5 group">
+            <a href="#" className="flex items-center gap-2.5 group" data-cursor="Home">
               <Image
                 src="/logo.svg"
-                alt="Hiven"
+                alt="Hivins"
                 width={32}
                 height={32}
                 className="rounded-lg"
               />
-              <span className="font-[family-name:var(--font-body)] text-xl font-bold text-accent tracking-tight group-hover:text-accent-bright transition-colors duration-300">
-                HIVEN
+              <span className="font-body text-xl font-bold text-accent tracking-tight group-hover:text-accent-bright transition-colors duration-300">
+                HIVINS
               </span>
             </a>
 
-            <div className="hidden md:flex items-center gap-8">
-              {navLinks.map((link) => (
+            <div className="hidden md:flex items-center gap-1">
+              {navLinks.map((link, i) => (
                 <a
                   key={link.href}
                   href={link.href}
-                  className="text-sm font-medium text-text-secondary hover:text-accent transition-colors duration-300 relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] after:bg-accent after:transition-all after:duration-300 hover:after:w-full"
+                  className="relative px-5 py-2 text-sm font-medium text-text-secondary hover:text-text-primary transition-colors duration-300"
+                  onMouseEnter={() => setHoveredIndex(i)}
+                  onMouseLeave={() => setHoveredIndex(null)}
+                  data-cursor={link.label}
                 >
-                  {link.label}
+                  {hoveredIndex === i && (
+                    <motion.span
+                      layoutId="nav-indicator"
+                      className="absolute inset-0 rounded-lg border border-accent/25 bg-accent/8 shadow-[0_0_16px_var(--accent-glow)]"
+                      transition={{ type: "spring", bounce: 0.2, duration: 0.4 }}
+                    />
+                  )}
+                  <span className="relative z-10">
+                    {link.label}
+                  </span>
                 </a>
               ))}
             </div>
@@ -66,7 +79,8 @@ export default function Navbar() {
                 href="https://tally.so/r/nGygZp"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center px-6 py-2.5 text-sm font-semibold text-bg-primary bg-accent rounded-lg transition-all duration-300 hover:bg-accent-bright hover:scale-105 active:scale-95"
+                className="inline-flex items-center px-6 py-2.5 text-sm font-semibold text-bg-primary bg-accent rounded-lg transition-all duration-300 hover:bg-accent-bright"
+                data-cursor="Join us!"
               >
                 Join Waitlist
               </a>
@@ -101,7 +115,7 @@ export default function Navbar() {
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.1 }}
-                  className="text-2xl font-[family-name:var(--font-display)] font-semibold text-text-primary hover:text-accent transition-colors"
+                  className="text-2xl font-display font-semibold text-text-primary hover:text-accent transition-colors"
                 >
                   {link.label}
                 </motion.a>
