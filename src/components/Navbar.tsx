@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import Image from "next/image";
 
 const navLinks = [
   { href: "#founders", label: "About" },
@@ -36,6 +37,13 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
             <a href="#" className="flex items-center gap-2.5 group">
+              <Image
+                src="/logo.svg"
+                alt="Hiven"
+                width={32}
+                height={32}
+                className="rounded-lg"
+              />
               <span className="font-[family-name:var(--font-body)] text-xl font-bold text-accent tracking-tight group-hover:text-accent-bright transition-colors duration-300">
                 HIVEN
               </span>
