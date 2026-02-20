@@ -86,15 +86,6 @@ export default function CustomCursor() {
       style={{ x, y }}
     >
       <motion.div
-        className="absolute -translate-x-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-accent shadow-[0_0_8px_var(--accent-glow)]"
-        animate={{
-          scale: visible ? 0 : 1,
-          opacity: visible ? 0 : 0.9,
-        }}
-        transition={{ duration: 0.15 }}
-      />
-
-      <motion.div
         className="absolute left-2 top-4 whitespace-nowrap px-3.5 py-1.5 rounded-md bg-accent text-bg-primary text-xs font-semibold font-body tracking-wide shadow-[0_0_16px_var(--accent-glow)]"
         initial={{ opacity: 0, scale: 0.8, y: 10 }}
         animate={{

@@ -112,19 +112,6 @@ body {
   transform: scale(1.05);
 }
 
-/* ==========================================
-   CUSTOM CURSOR - hide default on desktop
-   ========================================== */
-@media (min-width: 1024px) {
-  html {
-    cursor: none;
-  }
-  *,
-  *::before,
-  *::after {
-    cursor: none !important;
-  }
-}
 
 
 /* ==========================================

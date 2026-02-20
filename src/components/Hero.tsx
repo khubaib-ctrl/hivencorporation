@@ -9,7 +9,7 @@ import { ArrowRight, ChevronDown } from "lucide-react";
 import { useRef } from "react";
 
 
-const LETTERS = ["H", "I", "V", "I", "N", "S"];
+const LETTERS = ["H", "I", "V", "I", "N"];
 
 const EASE_OUT_EXPO = [0.22, 1, 0.36, 1] as const;
 
@@ -172,7 +172,7 @@ export default function Hero() {
       </motion.div>
 
       <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
-        {/* HIVINS — letter-by-letter clip reveal */}
+        {/* HIVIN — letter-by-letter clip reveal */}
         <div className="mb-4">
           <div className="flex items-baseline justify-center">
             {LETTERS.map((letter, i) => (

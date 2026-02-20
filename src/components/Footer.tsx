@@ -20,10 +20,10 @@ export default function Footer() {
       data-snap-section
       className="relative min-h-screen flex flex-col justify-between bg-bg-footer-cta overflow-hidden"
     >
-      {/* Giant HIVINS watermark */}
+      {/* Giant HIVIN watermark */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
         <span className="text-[20vw] font-display font-bold text-white/1.5 tracking-[0.15em] leading-none">
-          HIVINS
+          HIVIN
         </span>
       </div>
 
@@ -75,20 +75,20 @@ export default function Footer() {
             <div className="flex items-center gap-2.5" data-cursor="Home">
               <Image
                 src="/logo.svg"
-                alt="Hivins"
+                alt="Hivin"
                 width={30}
                 height={30}
                 className="rounded-lg"
               />
               <span className="font-display text-lg font-semibold text-gradient">
-                Hivins
+                Hivin
               </span>
             </div>
 
             {/* Social links */}
             <div className="flex items-center gap-4">
               <a
-                href="mailto:contact@hivinscorporation.com"
+                href="mailto:contact@hivincorporation.com"
                 className="group w-10 h-10 rounded-full border border-white/8 flex items-center justify-center text-text-muted hover:text-accent-bright hover:border-accent/40 transition-all duration-500"
                 aria-label="Email"
                 data-cursor="Email us"
@@ -119,7 +119,7 @@ export default function Footer() {
 
             {/* Legal */}
             <div className="flex flex-col sm:flex-row items-center gap-4 text-sm text-text-muted">
-              <span>&copy; 2026 Hivins Corporation</span>
+              <span>&copy; 2026 Hivin Corporation</span>
               <span className="hidden sm:block">&middot;</span>
               <div className="flex gap-4">
                 <a

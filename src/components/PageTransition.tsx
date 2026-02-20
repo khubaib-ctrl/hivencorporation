@@ -24,14 +24,14 @@ export default function PageTransition() {
   const randomOrder = useRef(shuffleArray(Array.from({ length: TOTAL_BLOCKS }, (_, i) => i)));
 
   useEffect(() => {
-    const isFirstLoad = !sessionStorage.getItem("hivins_visited");
+    const isFirstLoad = !sessionStorage.getItem("hivin_visited");
 
     if (!isFirstLoad) {
       setShowTransition(false);
       return;
     }
 
-    sessionStorage.setItem("hivins_visited", "true");
+    sessionStorage.setItem("hivin_visited", "true");
     document.body.style.overflow = "hidden";
 
     const logoTimer = setTimeout(() => setShowLogo(true), 300);
@@ -100,13 +100,13 @@ export default function PageTransition() {
                 <div className="flex items-center gap-4">
                   <Image
                     src="/logo.svg"
-                    alt="Hivins"
+                    alt="Hivin"
                     width={60}
                     height={60}
                     className="rounded-xl"
                   />
                   <span className="font-body text-5xl sm:text-6xl font-bold tracking-tight text-gradient">
-                    HIVINS
+                    HIVIN
                   </span>
                 </div>
               </motion.div>

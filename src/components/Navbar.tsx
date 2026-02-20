@@ -40,13 +40,13 @@ export default function Navbar() {
             <a href="#" className="flex items-center gap-2.5 group" data-cursor="Home">
               <Image
                 src="/logo.svg"
-                alt="Hivins"
+                alt="Hivin"
                 width={32}
                 height={32}
                 className="rounded-lg"
               />
               <span className="font-body text-xl font-bold text-accent tracking-tight group-hover:text-accent-bright transition-colors duration-300">
-                HIVINS
+                HIVIN
               </span>
             </a>
 
