@@ -31,7 +31,7 @@ export default function Founders() {
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: false, margin: "-100px" }}
           transition={{ duration: 0.8 }}
           className="text-center mb-20"
         >
@@ -49,7 +49,7 @@ export default function Founders() {
               key={founder.name}
               initial={{ opacity: 0, x: index === 0 ? -60 : 60 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
+              viewport={{ once: false, margin: "-100px" }}
               transition={{
                 duration: 0.8,
                 delay: founder.delay,
