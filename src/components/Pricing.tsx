@@ -72,7 +72,7 @@ const plans = [
 
 export default function Pricing() {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
+  const inView = useInView(ref, { once: false, margin: "-100px" });
 
   return (
     <section id="pricing" ref={ref} className="relative py-32 overflow-hidden">
@@ -82,7 +82,7 @@ export default function Pricing() {
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: false, margin: "-100px" }}
           transition={{ duration: 0.8 }}
           className="text-center mb-20"
         >
@@ -104,7 +104,7 @@ export default function Pricing() {
               key={plan.name}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
+              viewport={{ once: false, margin: "-50px" }}
               transition={{
                 duration: 0.7,
                 delay: index * 0.15,
@@ -172,7 +172,7 @@ export default function Pricing() {
                         key={feature}
                         initial={{ opacity: 0, x: -10 }}
                         whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
+                        viewport={{ once: false }}
                         transition={{ delay: 0.3 + i * 0.08 }}
                         className="flex items-center gap-3"
                       >
