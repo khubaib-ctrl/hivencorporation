@@ -1,26 +1,42 @@
 @import "tailwindcss";
 
 :root {
-  --bg-primary: #09090b;
+  --bg-primary: #0f0f11;
   --bg-secondary: #161618;
   --bg-card: #1c1c1f;
   --bg-elevated: #232326;
 
+  --bg-hero: #0f1117;
+  --bg-founders: #14120e;
+  --bg-profiles: #0e1118;
+  --bg-frequency: #13110c;
+  --bg-howitworks: #0e1216;
+  --bg-pricing: #14100f;
+  --bg-footer-cta: #0a0a0e;
+  --bg-footer-bar: #060607;
+
   --accent: #f59e0b;
   --accent-bright: #fbbf24;
   --accent-dim: #b45309;
-  --accent-glow: rgba(245, 158, 11, 0.15);
-  --accent-glow-strong: rgba(245, 158, 11, 0.3);
+  --accent-glow: rgba(245, 158, 11, 0.18);
+  --accent-glow-strong: rgba(245, 158, 11, 0.35);
+
+  --accent-rose: #fb7185;
+  --accent-rose-glow: rgba(251, 113, 133, 0.2);
+  --accent-violet: #a78bfa;
+  --accent-violet-glow: rgba(167, 139, 250, 0.15);
 
   --text-primary: #fafafa;
   --text-secondary: #a1a1aa;
   --text-muted: #71717a;
 
-  --border: rgba(255, 255, 255, 0.06);
-  --border-hover: rgba(255, 255, 255, 0.12);
+  --border: rgba(255, 255, 255, 0.07);
+  --border-hover: rgba(255, 255, 255, 0.14);
 
-  --glass: rgba(22, 22, 24, 0.7);
-  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass: rgba(18, 18, 20, 0.75);
+  --glass-border: rgba(255, 255, 255, 0.09);
+
+  --cubic-default: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 @theme inline {
@@ -28,6 +44,15 @@
   --color-bg-secondary: var(--bg-secondary);
   --color-bg-card: var(--bg-card);
   --color-bg-elevated: var(--bg-elevated);
+
+  --color-bg-hero: var(--bg-hero);
+  --color-bg-founders: var(--bg-founders);
+  --color-bg-profiles: var(--bg-profiles);
+  --color-bg-frequency: var(--bg-frequency);
+  --color-bg-howitworks: var(--bg-howitworks);
+  --color-bg-pricing: var(--bg-pricing);
+  --color-bg-footer-cta: var(--bg-footer-cta);
+  --color-bg-footer-bar: var(--bg-footer-bar);
 
   --color-accent: var(--accent);
   --color-accent-bright: var(--accent-bright);
@@ -44,6 +69,11 @@
   --color-glass: var(--glass);
   --color-glass-border: var(--glass-border);
 
+  --color-accent-rose: var(--accent-rose);
+  --color-accent-rose-glow: var(--accent-rose-glow);
+  --color-accent-violet: var(--accent-violet);
+  --color-accent-violet-glow: var(--accent-violet-glow);
+
   --font-display: var(--font-cormorant);
   --font-body: var(--font-outfit);
 }
@@ -54,14 +84,17 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
 }
 
 body {
-  background: var(--bg-primary);
+  background: var(--bg-footer-bar);
   color: var(--text-primary);
   font-family: var(--font-outfit), system-ui, sans-serif;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 ::selection {
@@ -69,6 +102,39 @@ body {
   color: var(--bg-primary);
 }
 
+/* ==========================================
+   STICKY SCROLL SECTIONS
+   Each section sticks at top, next one slides
+   up and over to create a layered card effect.
+   ========================================== */
+.sticky-section {
+  position: sticky;
+  top: 0;
+}
+
+/* ==========================================
+   PARALLAX IMAGE SUBTLE HOVER
+   ========================================== */
+.parallax-img {
+  transition: transform 0.6s var(--cubic-default);
+}
+.parallax-img:hover {
+  transform: scale(1.05);
+}
+
+/* ==========================================
+   CUSTOM CURSOR - hide default on desktop
+   ========================================== */
+@media (min-width: 1024px) {
+  * {
+    cursor: none !important;
+  }
+}
+
+
+/* ==========================================
+   KEYFRAMES
+   ========================================== */
 @keyframes mesh-drift {
   0%, 100% { transform: translate(0, 0) scale(1); }
   25% { transform: translate(30px, -50px) scale(1.1); }
@@ -154,10 +220,10 @@ body {
     opacity: 0;
   }
   8% {
-    opacity: 0.7;
+    opacity: 0.85;
   }
-  80% {
-    opacity: 0.12;
+  60% {
+    opacity: 0.25;
   }
   100% {
     transform: translateY(-100vh) translateX(var(--drift-x, 20px)) scale(0.15);
@@ -165,6 +231,14 @@ body {
   }
 }
 
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* ==========================================
+   UTILITY CLASSES
+   ========================================== */
 .glass {
   background: var(--glass);
   backdrop-filter: blur(20px);
@@ -179,20 +253,59 @@ body {
   background-clip: text;
 }
 
+.text-gradient-multi {
+  background: linear-gradient(135deg, var(--accent-bright), var(--accent), var(--accent-rose), var(--accent-violet));
+  background-size: 200% 200%;
+  animation: gradient-shift 6s ease infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
 .grain-overlay::before {
   content: "";
   position: fixed;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-  animation: grain 8s steps(10) infinite;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
   pointer-events: none;
   z-index: 1000;
-  opacity: 0.4;
+  opacity: 0.3;
+  will-change: auto;
 }
 
+/* ==========================================
+   LENIS SMOOTH SCROLL
+   ========================================== */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* ==========================================
+   GPU COMPOSITING HINTS
+   ========================================== */
+.gpu-layer {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* ==========================================
+   ACCESSIBILITY
+   ========================================== */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
