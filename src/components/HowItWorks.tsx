@@ -29,19 +29,19 @@ const steps = [
 
 export default function HowItWorks() {
   return (
-    <section className="relative py-32 overflow-hidden">
+    <section className="relative py-32 overflow-hidden bg-bg-howitworks">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, margin: "-100px" }}
+          viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8 }}
           className="text-center mb-20"
         >
           <span className="text-accent text-sm font-semibold tracking-[0.2em] uppercase mb-4 block">
             How It Works
           </span>
-          <h2 className="font-[family-name:var(--font-display)] text-4xl sm:text-5xl md:text-6xl font-bold text-text-primary mb-6">
+          <h2 className="font-(family-name:--font-display) text-4xl sm:text-5xl md:text-6xl font-bold text-text-primary mb-6">
             Ready to Match?
           </h2>
           <p className="max-w-xl mx-auto text-text-secondary text-lg">
@@ -56,14 +56,14 @@ export default function HowItWorks() {
             <motion.div
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
-              viewport={{ once: false }}
+              viewport={{ once: true }}
               transition={{ duration: 1.5, ease: "easeOut" }}
-              className="h-full bg-gradient-to-r from-transparent via-accent/30 to-transparent origin-left"
+              className="h-full bg-linear-to-r from-transparent via-accent/30 to-transparent origin-left"
             />
             <motion.div
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
-              viewport={{ once: false }}
+              viewport={{ once: true }}
               transition={{ duration: 1.5, ease: "easeOut", delay: 0.3 }}
               className="absolute inset-0 h-full origin-left"
               style={{
@@ -80,7 +80,7 @@ export default function HowItWorks() {
                 key={step.title}
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false, margin: "-50px" }}
+                viewport={{ once: true, margin: "-50px" }}
                 transition={{
                   duration: 0.7,
                   delay: index * 0.2,
@@ -96,27 +96,22 @@ export default function HowItWorks() {
                       className="text-accent transition-transform duration-300 group-hover:scale-110"
                     />
 
-                    {/* Orbiting dot */}
-                    <motion.div
-                      className="absolute w-3 h-3 rounded-full bg-accent shadow-[0_0_12px_var(--accent-glow-strong)]"
-                      style={{ top: -6 }}
-                      animate={{ rotate: 360 }}
-                      transition={{
-                        duration: 8 + index * 2,
-                        repeat: Infinity,
-                        ease: "linear",
+                    <div
+                      className="absolute w-3 h-3 rounded-full bg-accent shadow-[0_0_8px_var(--accent-glow)] gpu-layer"
+                      style={{
+                        top: -6,
+                        animation: `spin ${8 + index * 2}s linear infinite`,
                       }}
-                    >
-                      <div className="w-3 h-3 rounded-full bg-accent" />
-                    </motion.div>
+                    />
+
                   </div>
 
-                  <span className="absolute -top-2 -right-2 text-accent/20 font-[family-name:var(--font-display)] text-5xl font-bold">
+                  <span className="absolute -top-2 -right-2 text-accent/20 font-(family-name:--font-display) text-5xl font-bold">
                     {step.number}
                   </span>
                 </div>
 
-                <h3 className="font-[family-name:var(--font-display)] text-xl font-bold text-text-primary mb-3">
+                <h3 className="font-(family-name:--font-display) text-xl font-bold text-text-primary mb-3">
                   {step.title}
                 </h3>
                 <p className="text-text-secondary leading-relaxed max-w-xs mx-auto">
