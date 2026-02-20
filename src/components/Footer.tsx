@@ -19,7 +19,7 @@ export default function Footer() {
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={{ once: false, margin: "-100px" }}
             transition={{ duration: 0.8 }}
           >
             <h2 className="font-[family-name:var(--font-display)] text-4xl sm:text-5xl md:text-7xl font-bold text-text-primary mb-6 leading-tight">
@@ -74,16 +74,16 @@ export default function Footer() {
             <div className="flex items-center gap-4">
               <a
                 href="mailto:contact@hivencorporation.com"
-                className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-text-muted hover:text-accent hover:border-accent/30 transition-all duration-300"
+                className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-text-muted hover:text-accent hover:border-accent/30 transition-all duration-300 cursor-pointer"
                 aria-label="Email"
               >
                 <Mail size={18} />
               </a>
               <a
-                href="https://linkedin.com/in/aunraz"
+                href="https://www.linkedin.com/in/aunraz"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-text-muted hover:text-accent hover:border-accent/30 transition-all duration-300"
+                className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-text-muted hover:text-accent hover:border-accent/30 transition-all duration-300 cursor-pointer"
                 aria-label="LinkedIn - Aun Raza"
               >
                 <Linkedin size={18} />
@@ -92,7 +92,7 @@ export default function Footer() {
                 href="https://www.linkedin.com/in/mickael-chiron"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-text-muted hover:text-accent hover:border-accent/30 transition-all duration-300"
+                className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-text-muted hover:text-accent hover:border-accent/30 transition-all duration-300 cursor-pointer"
                 aria-label="LinkedIn - Mickaël Chiron"
               >
                 <Linkedin size={18} />
