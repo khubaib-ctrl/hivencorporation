@@ -36,7 +36,7 @@ function AnimatedWave({
       strokeLinecap="round"
       initial={{ pathLength: 0, opacity: 0 }}
       whileInView={{ pathLength: 1, opacity: 1 }}
-      viewport={{ once: true }}
+      viewport={{ once: false }}
       transition={{ duration: 2, delay, ease: "easeOut" }}
     />
   );
@@ -74,7 +74,7 @@ function ProgressRing({
         strokeDasharray={circumference}
         initial={{ strokeDashoffset: circumference }}
         whileInView={{ strokeDashoffset: circumference * (1 - progress) }}
-        viewport={{ once: true }}
+        viewport={{ once: false }}
         transition={{ duration: 1.5, delay, ease: "easeOut" }}
       />
     </svg>
@@ -110,7 +110,7 @@ const traits = [
 
 export default function FrequencyForm() {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
+  const inView = useInView(ref, { once: false, margin: "-100px" });
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
 
@@ -129,7 +129,7 @@ export default function FrequencyForm() {
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: false, margin: "-100px" }}
           transition={{ duration: 0.8 }}
           className="text-center mb-8"
         >
@@ -149,7 +149,7 @@ export default function FrequencyForm() {
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           transition={{ duration: 1 }}
           className="relative max-w-3xl mx-auto mb-20 h-40"
         >
@@ -194,7 +194,7 @@ export default function FrequencyForm() {
               key={trait.title}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
+              viewport={{ once: false, margin: "-50px" }}
               transition={{
                 duration: 0.7,
                 delay: index * 0.15,
@@ -231,7 +231,7 @@ export default function FrequencyForm() {
         <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           transition={{ delay: 0.8, duration: 0.8 }}
           className="text-center mt-12 text-text-muted italic font-[family-name:var(--font-display)] text-lg"
         >
