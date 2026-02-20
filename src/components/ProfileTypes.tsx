@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Compass, Lightbulb, Zap } from "lucide-react";
+import ScrollRevealText from "./ScrollRevealText";
 
 const profiles = [
   {
@@ -102,45 +103,48 @@ export default function ProfileTypes() {
   };
 
   return (
-    <section id="profiles" className="relative py-32 overflow-hidden">
+    <section id="profiles" className="relative py-32 overflow-hidden bg-bg-profiles rounded-t-4xl shadow-[0_-8px_30px_rgba(0,0,0,0.5)]">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, margin: "-100px" }}
+          viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8 }}
           className="text-center mb-20"
         >
           <span className="text-accent text-sm font-semibold tracking-[0.2em] uppercase mb-4 block">
             Your Journey
           </span>
-          <h2 className="font-[family-name:var(--font-display)] text-4xl sm:text-5xl md:text-6xl font-bold text-text-primary mb-6">
+          <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold text-text-primary mb-6">
             Find Your Path
           </h2>
-          <p className="max-w-xl mx-auto text-text-secondary text-lg">
-            Determine which profile best matches you. Your choice can evolve as
-            you go — this is just the beginning.
-          </p>
+          <ScrollRevealText
+            text="Determine which profile best matches you. Your choice can evolve as you go — this is just the beginning."
+            className="max-w-xl mx-auto text-text-secondary text-lg justify-center"
+          />
         </motion.div>
 
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: false, margin: "-100px" }}
+          viewport={{ once: true, margin: "-100px" }}
           className="grid md:grid-cols-3 gap-6 lg:gap-8"
         >
           {profiles.map((profile) => (
             <motion.div key={profile.title} variants={cardVariants}>
               <TiltCard glowColor={profile.glowColor}>
-                <div className="relative p-8 lg:p-10 rounded-2xl border border-border bg-bg-secondary/50 backdrop-blur-sm h-full transition-colors duration-500 hover:border-accent/20 group">
+                <div
+                  className="relative p-8 lg:p-10 rounded-2xl border border-border bg-bg-secondary/50 h-full transition-colors duration-500 hover:border-accent/20 group"
+                  data-cursor={profile.title}
+                >
                   <div
-                    className={`w-14 h-14 rounded-xl bg-gradient-to-br ${profile.accent} flex items-center justify-center mb-6 shadow-lg group-hover:shadow-[0_0_30px_var(--accent-glow)] transition-shadow duration-500`}
+                    className={`w-14 h-14 rounded-xl bg-linear-to-br ${profile.accent} flex items-center justify-center mb-6 shadow-lg group-hover:shadow-[0_0_30px_var(--accent-glow)] transition-shadow duration-500`}
                   >
                     <profile.icon size={24} className="text-bg-primary" />
                   </div>
 
-                  <h3 className="font-[family-name:var(--font-display)] text-2xl font-bold text-text-primary mb-3">
+                  <h3 className="font-display text-2xl font-bold text-text-primary mb-3">
                     {profile.title}
                   </h3>
 
