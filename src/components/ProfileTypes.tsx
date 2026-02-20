@@ -107,7 +107,7 @@ export default function ProfileTypes() {
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: false, margin: "-100px" }}
           transition={{ duration: 0.8 }}
           className="text-center mb-20"
         >
@@ -127,7 +127,7 @@ export default function ProfileTypes() {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: false, margin: "-100px" }}
           className="grid md:grid-cols-3 gap-6 lg:gap-8"
         >
           {profiles.map((profile) => (
