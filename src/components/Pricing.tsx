@@ -75,7 +75,7 @@ export default function Pricing() {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="pricing" ref={ref} className="relative py-32 overflow-hidden bg-bg-pricing">
+    <section id="pricing" ref={ref} data-snap-section className="relative min-h-screen py-16 flex flex-col justify-center overflow-hidden bg-bg-pricing">
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-linear-to-b from-transparent via-bg-secondary/50 to-transparent" />
       </div>

@@ -118,7 +118,8 @@ export default function FrequencyForm() {
     <section
       id="frequency"
       ref={ref}
-      className="relative py-32 overflow-hidden bg-bg-frequency"
+      data-snap-section
+      className="relative min-h-screen py-16 flex flex-col justify-center overflow-hidden bg-bg-frequency"
     >
       <div className="absolute inset-0">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] rounded-full bg-accent/3 blur-[60px]" />

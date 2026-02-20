@@ -7,7 +7,7 @@ import {
 } from "framer-motion";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import { useRef } from "react";
-import ScrollRevealText from "./ScrollRevealText";
+
 
 const LETTERS = ["H", "I", "V", "I", "N", "S"];
 
@@ -161,6 +161,7 @@ export default function Hero() {
   return (
     <section
       ref={sectionRef}
+      data-snap-section
       className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-bg-hero"
     >
       <motion.div className="absolute inset-0 gpu-layer" style={{ scale: bgScale }}>
@@ -231,10 +232,9 @@ export default function Hero() {
           transition={{ delay: 1.8, duration: 0.7 }}
           className="max-w-xl mx-auto mb-12"
         >
-          <ScrollRevealText
-            text="Connect with people who share your energy and ambition. Join a real family — supportive, driven, ready to dream big. Together, we transform the world."
-            className="text-text-secondary text-base sm:text-lg leading-relaxed font-body justify-center"
-          />
+          <p className="text-text-secondary text-base sm:text-lg leading-relaxed font-body text-center">
+            Connect with people who share your energy and ambition. Join a real family — supportive, driven, ready to dream big. Together, we transform the world.
+          </p>
         </motion.div>
 
         {/* CTAs */}
@@ -277,7 +277,7 @@ export default function Hero() {
       {/* Scroll indicator */}
       <motion.a
         href="#founders"
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 text-text-muted/60 hover:text-accent transition-colors duration-500 cursor-pointer"
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 text-text-muted/60 hover:text-accent transition-colors duration-500"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2.6 }}

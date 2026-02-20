@@ -17,6 +17,7 @@ export default function Footer() {
   return (
     <footer
       ref={ref}
+      data-snap-section
       className="relative min-h-screen flex flex-col justify-between bg-bg-footer-cta overflow-hidden"
     >
       {/* Giant HIVINS watermark */}
@@ -88,7 +89,7 @@ export default function Footer() {
             <div className="flex items-center gap-4">
               <a
                 href="mailto:contact@hivinscorporation.com"
-                className="group w-10 h-10 rounded-full border border-white/8 flex items-center justify-center text-text-muted hover:text-accent-bright hover:border-accent/40 transition-all duration-500 cursor-pointer"
+                className="group w-10 h-10 rounded-full border border-white/8 flex items-center justify-center text-text-muted hover:text-accent-bright hover:border-accent/40 transition-all duration-500"
                 aria-label="Email"
                 data-cursor="Email us"
               >
@@ -98,7 +99,7 @@ export default function Footer() {
                 href="https://www.linkedin.com/in/aunraz"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group w-10 h-10 rounded-full border border-white/8 flex items-center justify-center text-text-muted hover:text-accent-rose hover:border-accent-rose/30 transition-all duration-500 cursor-pointer"
+                className="group w-10 h-10 rounded-full border border-white/8 flex items-center justify-center text-text-muted hover:text-accent-rose hover:border-accent-rose/30 transition-all duration-500"
                 aria-label="LinkedIn - Aun Raza"
                 data-cursor="Aun's LinkedIn"
               >
@@ -108,7 +109,7 @@ export default function Footer() {
                 href="https://www.linkedin.com/in/mickael-chiron"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group w-10 h-10 rounded-full border border-white/8 flex items-center justify-center text-text-muted hover:text-accent-violet hover:border-accent-violet/30 transition-all duration-500 cursor-pointer"
+                className="group w-10 h-10 rounded-full border border-white/8 flex items-center justify-center text-text-muted hover:text-accent-violet hover:border-accent-violet/30 transition-all duration-500"
                 aria-label="LinkedIn - Mickaël Chiron"
                 data-cursor="Mickaël's LinkedIn"
               >

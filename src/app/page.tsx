@@ -18,22 +18,14 @@ export default function Home() {
       <SmoothScroll>
         <Navbar />
         <main>
-          <div className="sticky top-0 z-1">
-            <Hero />
-          </div>
-          <div className="sticky top-0 z-2">
-            <Founders />
-          </div>
-          <div className="sticky top-0 z-3">
-            <ProfileTypes />
-          </div>
-          <div className="relative z-4">
-            <FrequencyForm />
-            <HowItWorks />
-            <Pricing />
-          </div>
+          <Hero />
+          <Founders />
+          <ProfileTypes />
+          <FrequencyForm />
+          <HowItWorks />
+          <Pricing />
+          <Footer />
         </main>
-        <Footer />
       </SmoothScroll>
     </>
   );

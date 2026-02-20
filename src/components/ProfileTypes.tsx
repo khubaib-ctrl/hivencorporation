@@ -3,7 +3,7 @@
 import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Compass, Lightbulb, Zap } from "lucide-react";
-import ScrollRevealText from "./ScrollRevealText";
+
 
 const profiles = [
   {
@@ -103,7 +103,7 @@ export default function ProfileTypes() {
   };
 
   return (
-    <section id="profiles" className="relative py-32 overflow-hidden bg-bg-profiles rounded-t-4xl shadow-[0_-8px_30px_rgba(0,0,0,0.5)]">
+    <section id="profiles" data-snap-section className="relative min-h-screen py-16 flex flex-col justify-center overflow-hidden bg-bg-profiles">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -118,10 +118,9 @@ export default function ProfileTypes() {
           <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold text-text-primary mb-6">
             Find Your Path
           </h2>
-          <ScrollRevealText
-            text="Determine which profile best matches you. Your choice can evolve as you go — this is just the beginning."
-            className="max-w-xl mx-auto text-text-secondary text-lg justify-center"
-          />
+          <p className="max-w-xl mx-auto text-text-secondary text-lg text-center">
+            Determine which profile best matches you. Your choice can evolve as you go — this is just the beginning.
+          </p>
         </motion.div>
 
         <motion.div

@@ -3,7 +3,6 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import { useRef } from "react";
-import ScrollRevealText from "./ScrollRevealText";
 
 const founders = [
   {
@@ -30,28 +29,43 @@ export default function Founders() {
     target: sectionRef,
     offset: ["start end", "end start"],
   });
+
   const bgScale = useTransform(scrollYProgress, [0, 0.5, 1], [1.15, 1, 1.05]);
+  const headingY = useTransform(scrollYProgress, [0, 1], [50, -50]);
+  const photoY = useTransform(scrollYProgress, [0, 1], [35, -55]);
+  const card0Y = useTransform(scrollYProgress, [0, 1], [25, -25]);
+  const card1Y = useTransform(scrollYProgress, [0, 1], [45, -35]);
+  const bgGlowY = useTransform(scrollYProgress, [0, 1], [80, -80]);
+
+  const cardYValues = [card0Y, card1Y];
 
   return (
-    <section ref={sectionRef} id="founders" className="relative py-32 overflow-hidden bg-bg-founders rounded-t-4xl shadow-[0_-8px_30px_rgba(0,0,0,0.5)]">
+    <section ref={sectionRef} id="founders" data-snap-section className="relative min-h-screen py-16 flex flex-col justify-center overflow-hidden bg-bg-founders">
       <motion.div className="absolute inset-0" style={{ scale: bgScale }}>
         <div className="absolute inset-0 bg-linear-to-b from-transparent via-accent/2 to-transparent" />
       </motion.div>
 
+      <motion.div
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 w-[600px] h-[300px] rounded-full bg-accent/4 blur-[80px] pointer-events-none"
+        style={{ y: bgGlowY }}
+      />
+
       <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-20"
-        >
-          <span className="text-accent text-sm font-semibold tracking-[0.2em] uppercase mb-4 block">
-            The Team
-          </span>
-          <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold text-text-primary">
-            Founding Members
-          </h2>
+        <motion.div style={{ y: headingY }}>
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-20"
+          >
+            <span className="text-accent text-sm font-semibold tracking-[0.2em] uppercase mb-4 block">
+              The Team
+            </span>
+            <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold text-text-primary">
+              Founding Members
+            </h2>
+          </motion.div>
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
@@ -66,6 +80,7 @@ export default function Founders() {
                 delay: founder.delay,
                 ease: [0.22, 1, 0.36, 1],
               }}
+              style={{ y: cardYValues[index] }}
               className="group relative"
             >
               <div
@@ -76,7 +91,10 @@ export default function Founders() {
 
                 <div className="relative flex flex-col sm:flex-row gap-6">
                   <div className="shrink-0">
-                    <div className="relative w-20 h-20 rounded-2xl overflow-hidden ring-2 ring-accent/20 group-hover:ring-accent/40 transition-all duration-500 shadow-lg parallax-img">
+                    <motion.div
+                      className="relative w-20 h-20 rounded-2xl overflow-hidden ring-2 ring-accent/20 group-hover:ring-accent/40 transition-all duration-500 shadow-lg parallax-img"
+                      style={{ y: photoY }}
+                    >
                       <Image
                         src={founder.photo}
                         alt={founder.name}
@@ -84,7 +102,7 @@ export default function Founders() {
                         className="object-cover"
                         sizes="80px"
                       />
-                    </div>
+                    </motion.div>
                   </div>
 
                   <div className="flex-1">
@@ -94,10 +112,9 @@ export default function Founders() {
                     <p className="text-accent font-medium text-sm mb-4">
                       {founder.role}
                     </p>
-                    <ScrollRevealText
-                      text={founder.bio}
-                      className="text-text-secondary leading-relaxed text-[15px]"
-                    />
+                    <p className="text-text-secondary leading-relaxed text-[15px]">
+                      {founder.bio}
+                    </p>
                   </div>
                 </div>
               </div>

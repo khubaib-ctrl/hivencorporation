@@ -103,16 +103,6 @@ body {
 }
 
 /* ==========================================
-   STICKY SCROLL SECTIONS
-   Each section sticks at top, next one slides
-   up and over to create a layered card effect.
-   ========================================== */
-.sticky-section {
-  position: sticky;
-  top: 0;
-}
-
-/* ==========================================
    PARALLAX IMAGE SUBTLE HOVER
    ========================================== */
 .parallax-img {
@@ -126,7 +116,12 @@ body {
    CUSTOM CURSOR - hide default on desktop
    ========================================== */
 @media (min-width: 1024px) {
-  * {
+  html {
+    cursor: none;
+  }
+  *,
+  *::before,
+  *::after {
     cursor: none !important;
   }
 }
