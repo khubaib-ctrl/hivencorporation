@@ -17,11 +17,11 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "Hiven — Make It Happen",
+  title: "Hivins — Make It Happen",
   description:
-    "Hiven connects you with people who share your energy and ambition. Join a real family: supportive, driven, ready to dream big and build together.",
+    "Hivins connects you with people who share your energy and ambition. Join a real family: supportive, driven, ready to dream big and build together.",
   keywords: [
-    "Hiven",
+    "Hivins",
     "networking",
     "collaboration",
     "matching",
@@ -30,11 +30,11 @@ export const metadata: Metadata = {
     "innovation",
   ],
   openGraph: {
-    title: "Hiven — Make It Happen",
+    title: "Hivins — Make It Happen",
     description:
       "Connect with people who share your energy and ambition. Together, we can transform the world.",
     type: "website",
-    url: "https://hivencorporation.com",
+    url: "https://hivinscorporation.com",
   },
 };
 
