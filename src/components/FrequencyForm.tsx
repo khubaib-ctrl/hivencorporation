@@ -36,7 +36,7 @@ function AnimatedWave({
       strokeLinecap="round"
       initial={{ pathLength: 0, opacity: 0 }}
       whileInView={{ pathLength: 1, opacity: 1 }}
-      viewport={{ once: false }}
+      viewport={{ once: true }}
       transition={{ duration: 2, delay, ease: "easeOut" }}
     />
   );
@@ -54,7 +54,7 @@ function ProgressRing({
   const circumference = 2 * Math.PI * 32;
 
   return (
-    <svg width="80" height="80" viewBox="0 0 80 80" className="rotate-[-90deg]">
+    <svg width="80" height="80" viewBox="0 0 80 80" className="-rotate-90">
       <circle
         cx="40"
         cy="40"
@@ -74,7 +74,7 @@ function ProgressRing({
         strokeDasharray={circumference}
         initial={{ strokeDashoffset: circumference }}
         whileInView={{ strokeDashoffset: circumference * (1 - progress) }}
-        viewport={{ once: false }}
+        viewport={{ once: true }}
         transition={{ duration: 1.5, delay, ease: "easeOut" }}
       />
     </svg>
@@ -109,8 +109,8 @@ const traits = [
 ];
 
 export default function FrequencyForm() {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: false, margin: "-100px" });
+  const ref = useRef<HTMLElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-100px" });
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
 
@@ -118,38 +118,36 @@ export default function FrequencyForm() {
     <section
       id="frequency"
       ref={ref}
-      className="relative py-32 overflow-hidden"
+      className="relative py-32 overflow-hidden bg-bg-frequency"
     >
-      {/* Subtle background gradient */}
       <div className="absolute inset-0">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] rounded-full bg-accent/[0.03] blur-[100px]" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] rounded-full bg-accent/3 blur-[60px]" />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, margin: "-100px" }}
+          viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8 }}
           className="text-center mb-8"
         >
           <span className="text-accent text-sm font-semibold tracking-[0.2em] uppercase mb-4 block">
             Unique to You
           </span>
-          <h2 className="font-[family-name:var(--font-display)] text-4xl sm:text-5xl md:text-6xl font-bold text-text-primary mb-6">
+          <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold text-text-primary mb-6">
             Your Frequency Form
           </h2>
-          <p className="max-w-2xl mx-auto text-text-secondary text-lg leading-relaxed">
-            We don&apos;t match appearances — we match minds. Your frequency form is
-            a one-of-a-kind signature that deeply reflects who you truly are.
+          <p className="max-w-2xl mx-auto text-text-secondary text-lg leading-relaxed text-center">
+            We don&apos;t match appearances — we match minds. Your frequency form is a one-of-a-kind signature that deeply reflects who you truly are.
           </p>
         </motion.div>
 
-        {/* Animated wave visualization - client-only to avoid hydration mismatch */}
+        {/* Animated wave visualization */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          viewport={{ once: false }}
+          viewport={{ once: true }}
           transition={{ duration: 1 }}
           className="relative max-w-3xl mx-auto mb-20 h-40"
         >
@@ -183,7 +181,6 @@ export default function FrequencyForm() {
             </svg>
           )}
 
-          {/* Glow effect under waves */}
           <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 h-20 bg-accent/10 blur-[60px] rounded-full" />
         </motion.div>
 
@@ -194,13 +191,14 @@ export default function FrequencyForm() {
               key={trait.title}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false, margin: "-50px" }}
+              viewport={{ once: true, margin: "-50px" }}
               transition={{
                 duration: 0.7,
                 delay: index * 0.15,
                 ease: [0.22, 1, 0.36, 1],
               }}
-              className="group relative p-8 rounded-2xl border border-border bg-bg-secondary/50 backdrop-blur-sm hover:border-accent/20 transition-all duration-500"
+              className="group relative p-8 rounded-2xl border border-border bg-bg-secondary/50 hover:border-accent/20 transition-all duration-500"
+              data-cursor={trait.title}
             >
               <div className="flex items-center gap-4 mb-6">
                 <div className="relative">
@@ -216,7 +214,7 @@ export default function FrequencyForm() {
                     />
                   </div>
                 </div>
-                <h3 className="font-[family-name:var(--font-display)] text-xl font-bold text-text-primary">
+                <h3 className="font-display text-xl font-bold text-text-primary">
                   {trait.title}
                 </h3>
               </div>
@@ -231,9 +229,9 @@ export default function FrequencyForm() {
         <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          viewport={{ once: false }}
+          viewport={{ once: true }}
           transition={{ delay: 0.8, duration: 0.8 }}
-          className="text-center mt-12 text-text-muted italic font-[family-name:var(--font-display)] text-lg"
+          className="text-center mt-12 text-text-muted italic font-display text-lg"
         >
           And much more to come...
         </motion.p>
