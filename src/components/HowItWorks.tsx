@@ -34,7 +34,7 @@ export default function HowItWorks() {
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: false, margin: "-100px" }}
           transition={{ duration: 0.8 }}
           className="text-center mb-20"
         >
@@ -56,14 +56,14 @@ export default function HowItWorks() {
             <motion.div
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
-              viewport={{ once: true }}
+              viewport={{ once: false }}
               transition={{ duration: 1.5, ease: "easeOut" }}
               className="h-full bg-gradient-to-r from-transparent via-accent/30 to-transparent origin-left"
             />
             <motion.div
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
-              viewport={{ once: true }}
+              viewport={{ once: false }}
               transition={{ duration: 1.5, ease: "easeOut", delay: 0.3 }}
               className="absolute inset-0 h-full origin-left"
               style={{
@@ -80,7 +80,7 @@ export default function HowItWorks() {
                 key={step.title}
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
+                viewport={{ once: false, margin: "-50px" }}
                 transition={{
                   duration: 0.7,
                   delay: index * 0.2,
