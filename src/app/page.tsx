@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import WhyHivin from "@/components/WhyHivin";
 import Founders from "@/components/Founders";
 import ProfileTypes from "@/components/ProfileTypes";
 import FrequencyForm from "@/components/FrequencyForm";
@@ -19,9 +20,10 @@ export default function Home() {
         <Navbar />
         <main>
           <Hero />
-          <Founders />
+          <WhyHivin />
           <ProfileTypes />
           <FrequencyForm />
+          <Founders />
           <HowItWorks />
           <Pricing />
           <Footer />
