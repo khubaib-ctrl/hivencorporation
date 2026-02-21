@@ -11,6 +11,40 @@ import { useRef } from "react";
 
 const LETTERS = ["H", "I", "V", "I", "N"];
 
+/* ── Honeycomb ray data (computed once at module level) ── */
+const HEX_R = 30;
+const HEX_H = HEX_R * Math.sqrt(3);
+const HC_COLS = 55;
+const HC_ROWS = 10;
+const HC_W = HC_COLS * HEX_R * 1.5 + HEX_R * 2;
+const HC_H = HC_ROWS * HEX_H + HEX_H;
+
+function hexPath(cx: number, cy: number): string {
+  return [0, 60, 120, 180, 240, 300]
+    .map((d, i) => {
+      const rad = (d * Math.PI) / 180;
+      return `${i === 0 ? "M" : "L"}${(cx + HEX_R * Math.cos(rad)).toFixed(1)},${(cy + HEX_R * Math.sin(rad)).toFixed(1)}`;
+    })
+    .join("") + "Z";
+}
+
+const honeycombColumns = (() => {
+  const cols: { idx: number; d: string }[] = [];
+  for (let c = 0; c < HC_COLS; c++) {
+    const parts: string[] = [];
+    for (let r = 0; r < HC_ROWS; r++) {
+      parts.push(
+        hexPath(
+          c * HEX_R * 1.5 + HEX_R,
+          r * HEX_H + (c % 2 ? HEX_H / 2 : 0) + HEX_R
+        )
+      );
+    }
+    cols.push({ idx: c, d: parts.join("") });
+  }
+  return cols;
+})();
+
 const EASE_OUT_EXPO = [0.22, 1, 0.36, 1] as const;
 
 const letterReveal = {
@@ -34,6 +68,94 @@ const particles = [
   { left: "44%", size: 3, dur: 14, delay: 8, drift: -15 },
 ];
 
+function HoneycombRay() {
+  return (
+    <div className="absolute inset-0 pointer-events-none overflow-hidden">
+      {/* Soft glow — the light ray base */}
+      <div
+        className="absolute left-0 right-0"
+        style={{
+          top: "34%",
+          height: "32%",
+          background:
+            "linear-gradient(90deg, transparent 2%, rgba(255,148,0,0.05) 12%, rgba(255,148,0,0.1) 50%, rgba(255,148,0,0.05) 88%, transparent 98%)",
+          filter: "blur(50px)",
+        }}
+      />
+
+      {/* Honeycomb grid — column-grouped for wave animation */}
+      <div
+        className="absolute inset-0"
+        style={{
+          maskImage:
+            "linear-gradient(180deg, transparent 26%, rgba(0,0,0,0.3) 35%, rgba(0,0,0,0.8) 42%, black 47%, black 53%, rgba(0,0,0,0.8) 58%, rgba(0,0,0,0.3) 65%, transparent 74%)",
+          WebkitMaskImage:
+            "linear-gradient(180deg, transparent 26%, rgba(0,0,0,0.3) 35%, rgba(0,0,0,0.8) 42%, black 47%, black 53%, rgba(0,0,0,0.8) 58%, rgba(0,0,0,0.3) 65%, transparent 74%)",
+        }}
+      >
+        <svg
+          viewBox={`0 0 ${HC_W} ${HC_H}`}
+          preserveAspectRatio="xMidYMid slice"
+          className="w-full h-full"
+        >
+          <defs>
+            <linearGradient
+              id="hc-stroke-fade"
+              x1="0"
+              y1="0"
+              x2={HC_W}
+              y2="0"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop offset="0%" stopColor="#FF9400" stopOpacity="0" />
+              <stop offset="8%" stopColor="#FF9400" stopOpacity="0.1" />
+              <stop offset="25%" stopColor="#FFCC00" stopOpacity="0.22" />
+              <stop offset="50%" stopColor="#FFCC00" stopOpacity="0.3" />
+              <stop offset="75%" stopColor="#FFCC00" stopOpacity="0.22" />
+              <stop offset="92%" stopColor="#FF9400" stopOpacity="0.1" />
+              <stop offset="100%" stopColor="#FF9400" stopOpacity="0" />
+            </linearGradient>
+          </defs>
+          {honeycombColumns.map((col) => (
+            <path
+              key={col.idx}
+              d={col.d}
+              fill="none"
+              stroke="url(#hc-stroke-fade)"
+              strokeWidth="0.8"
+              style={{
+                animation: "hex-wave 5s ease-in-out infinite",
+                animationDelay: `${col.idx * 0.09}s`,
+              }}
+            />
+          ))}
+        </svg>
+      </div>
+
+      {/* Animated light sweep across the honeycomb */}
+      <div
+        className="absolute inset-0 gpu-layer"
+        style={{
+          maskImage:
+            "linear-gradient(180deg, transparent 30%, black 43%, black 57%, transparent 70%)",
+          WebkitMaskImage:
+            "linear-gradient(180deg, transparent 30%, black 43%, black 57%, transparent 70%)",
+        }}
+      >
+        <div
+          className="h-full"
+          style={{
+            width: "200%",
+            background:
+              "linear-gradient(90deg, transparent 0%, transparent 40%, rgba(255,204,0,0.06) 46%, rgba(255,204,0,0.1) 50%, rgba(255,204,0,0.06) 54%, transparent 60%, transparent 100%)",
+            animation: "honeycomb-sweep 7s ease-in-out infinite",
+          }}
+        />
+      </div>
+    </div>
+  );
+}
+
 function GradientOrbs() {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -41,7 +163,7 @@ function GradientOrbs() {
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[min(85vw,720px)] aspect-square rounded-full gpu-layer"
         style={{
           background:
-            "radial-gradient(circle, rgba(245,158,11,0.14) 0%, rgba(245,158,11,0.03) 50%, transparent 70%)",
+            "radial-gradient(circle, rgba(255,148,0,0.14) 0%, rgba(255,148,0,0.03) 50%, transparent 70%)",
           filter: "blur(30px)",
         }}
       />
@@ -49,7 +171,7 @@ function GradientOrbs() {
         className="absolute top-[22%] left-[58%] w-[min(50vw,440px)] aspect-square rounded-full animate-[mesh-drift_12s_ease-in-out_infinite] gpu-layer"
         style={{
           background:
-            "radial-gradient(circle, rgba(251,113,133,0.06) 0%, transparent 60%)",
+            "radial-gradient(circle, rgba(255,140,66,0.06) 0%, transparent 60%)",
           filter: "blur(40px)",
         }}
       />
@@ -57,7 +179,7 @@ function GradientOrbs() {
         className="absolute top-[62%] left-[18%] w-[min(42vw,360px)] aspect-square rounded-full animate-[mesh-drift-reverse_10s_ease-in-out_infinite] gpu-layer"
         style={{
           background:
-            "radial-gradient(circle, rgba(167,139,250,0.04) 0%, transparent 60%)",
+            "radial-gradient(circle, rgba(255,204,0,0.04) 0%, transparent 60%)",
           filter: "blur(40px)",
         }}
       />
@@ -71,7 +193,7 @@ function DotGrid() {
       className="absolute inset-0 pointer-events-none opacity-[0.035]"
       style={{
         backgroundImage:
-          "radial-gradient(rgba(245,158,11,0.5) 1px, transparent 1px)",
+          "radial-gradient(rgba(255,148,0,0.5) 1px, transparent 1px)",
         backgroundSize: "36px 36px",
       }}
     />
@@ -92,7 +214,7 @@ function OrbitalRings() {
           cx="400"
           cy="400"
           r="345"
-          stroke="#f59e0b"
+          stroke="#FF9400"
           strokeWidth="0.5"
           strokeDasharray="4 16"
         />
@@ -100,7 +222,7 @@ function OrbitalRings() {
           cx="400"
           cy="400"
           r="275"
-          stroke="#fbbf24"
+          stroke="#FFCC00"
           strokeWidth="0.3"
           strokeDasharray="2 22"
         />
@@ -116,7 +238,7 @@ function OrbitalRings() {
           cx="400"
           cy="400"
           r="315"
-          stroke="#f59e0b"
+          stroke="#FF9400"
           strokeWidth="0.4"
           strokeDasharray="6 24"
         />
@@ -137,8 +259,8 @@ function Embers() {
               left: p.left,
               width: p.size,
               height: p.size,
-              background: "rgba(245,158,11,0.7)",
-              boxShadow: `0 0 ${p.size * 3}px rgba(245,158,11,0.3)`,
+              background: "rgba(255,148,0,0.7)",
+              boxShadow: `0 0 ${p.size * 3}px rgba(255,148,0,0.3)`,
               animation: `ember-float ${p.dur}s linear infinite`,
               animationDelay: `${p.delay}s`,
               "--drift-x": `${p.drift}px`,
@@ -167,6 +289,7 @@ export default function Hero() {
       <motion.div className="absolute inset-0 gpu-layer" style={{ scale: bgScale }}>
         <GradientOrbs />
         <DotGrid />
+        <HoneycombRay />
         <OrbitalRings />
         <Embers />
       </motion.div>
@@ -182,8 +305,8 @@ export default function Hero() {
                   variants={letterReveal}
                   initial="hidden"
                   animate="visible"
-                  className="inline-block font-display text-[clamp(5rem,16vw,13rem)] font-bold leading-[0.85] text-gradient"
-                  style={{ letterSpacing: "0.015em" }}
+                  className="inline-block text-[clamp(5rem,16vw,13rem)] font-black leading-[0.85] text-gradient"
+                  style={{ fontFamily: "'Satoshi', sans-serif", letterSpacing: "0.015em" }}
                 >
                   {letter}
                 </motion.span>
