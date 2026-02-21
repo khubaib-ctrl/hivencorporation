@@ -20,7 +20,7 @@ const profiles = [
       "You already have an idea. You're looking for the right people to bring it to life with you.",
     icon: Lightbulb,
     accent: "from-yellow-300 to-amber-500",
-    glowColor: "rgba(245, 158, 11, 0.15)",
+    glowColor: "rgba(255, 148, 0, 0.15)",
   },
   {
     title: "Brainstormer",
