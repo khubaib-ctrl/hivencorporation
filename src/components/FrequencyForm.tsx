@@ -87,7 +87,7 @@ const traits = [
     description:
       "This reveals how you naturally perceive, feel, and navigate the world. Are you intuitive or analytical? Expressive or reserved? It's all about your spontaneous tendencies.",
     icon: Brain,
-    color: "#fbbf24",
+    color: "#FFCC00",
     progress: 0.78,
   },
   {
@@ -95,7 +95,7 @@ const traits = [
     description:
       "What principle guides your life at the deepest level? Whether it's freedom, impact, kindness, or creativity, your core value shapes your decisions and connections.",
     icon: Heart,
-    color: "#f59e0b",
+    color: "#FF9400",
     progress: 0.65,
   },
   {
@@ -103,7 +103,7 @@ const traits = [
     description:
       "How does your energy feel? Calm and grounded, fiery and driven, turbulent and shifting, or balanced and in flow? Your energy is your current inner rhythm.",
     icon: Flame,
-    color: "#b45309",
+    color: "#cc7600",
     progress: 0.85,
   },
 ];
@@ -166,7 +166,7 @@ export default function FrequencyForm() {
                 delay={0.3}
               />
               <AnimatedWave
-                color="rgba(245, 158, 11, 0.4)"
+                color="rgba(255, 148, 0, 0.4)"
                 amplitude={12}
                 frequency={3}
                 phase={1.5}
