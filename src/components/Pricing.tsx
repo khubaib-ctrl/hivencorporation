@@ -55,9 +55,9 @@ const plans = [
     name: "Gold",
     icon: Crown,
     price: 29.99,
-    color: "#f59e0b",
+    color: "#FF9400",
     gradient: "from-accent-bright to-accent",
-    borderGlow: "rgba(245, 158, 11, 0.2)",
+    borderGlow: "rgba(255, 148, 0, 0.2)",
     features: [
       "Precision matchmaking",
       "Exclusive project types",
@@ -125,7 +125,7 @@ export default function Pricing() {
                 className="relative h-full p-8 lg:p-10 rounded-2xl border bg-bg-secondary/30 overflow-hidden transition-all duration-500"
                 style={{
                   borderColor: plan.popular
-                    ? "rgba(245, 158, 11, 0.2)"
+                    ? "rgba(255, 148, 0, 0.2)"
                     : "var(--border)",
                 }}
                 data-cursor={plan.name}
